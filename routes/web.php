@@ -14,11 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/geteinstein', function () {
 
     $user = User::find('uid=einstein,dc=example,dc=com');
 
     dd($user);
 
     return view('welcome');
+});
+
+Route::get('logineinstein', function () {
+    $connection = new \LdapRecord\Connection(['hosts' => ['ldap.forumsys.com']]);
+
+    $password = 'password';
+
+    $response = $connection->auth()->attempt('uid=einstein,dc=example,dc=com', $password);
+
+    dd($response);
 });
