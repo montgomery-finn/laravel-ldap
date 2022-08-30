@@ -1,5 +1,6 @@
 <?php
 
+use LdapRecord\Models\OpenLDAP\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    $user = User::find('uid=einstein,dc=example,dc=com');
+
+    dd($user);
+
     return view('welcome');
 });
